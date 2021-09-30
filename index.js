@@ -8,7 +8,7 @@
 		muteThreshold: 10, // Amount of messages sent in a row that will cause a mute
 		kickThreshold: 10000, // Amount of messages sent in a row that will cause a kick.
 		banThreshold: 100000, // Amount of messages sent in a row that will cause a ban.
-		maxInterval: 2000, // Amount of time (in milliseconds) in which messages are considered spam.
+		maxInterval: 3000, // Amount of time (in milliseconds) in which messages are considered spam.
 		warnMessage: '{@user}, Kindly stop spamming or severe punishments will happen!', // Message that will be sent in chat upon warning a user.
 		muteMessage: '**{user_tag}** has been muted for spamming uncontrollably.',// Message that will be sent in chat upon muting a user.
 		maxDuplicatesWarning: 3, // Amount of duplicate messages that trigger a warning.
