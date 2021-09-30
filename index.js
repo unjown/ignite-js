@@ -8,18 +8,18 @@
 		muteThreshold: 10, // Amount of messages sent in a row that will cause a mute
 		kickThreshold: 10000, // Amount of messages sent in a row that will cause a kick.
 		banThreshold: 100000, // Amount of messages sent in a row that will cause a ban.
-		maxInterval: 3000, // Amount of time (in milliseconds) in which messages are considered spam.
-		warnMessage: '{@user}, Please stop spamming.', // Message that will be sent in chat upon warning a user.
-		muteMessage: '**{user_tag}** has been muted for spamming.',// Message that will be sent in chat upon muting a user.
-		maxDuplicatesWarning: 6, // Amount of duplicate messages that trigger a warning.
+		maxInterval: 2000, // Amount of time (in milliseconds) in which messages are considered spam.
+		warnMessage: '{@user}, Kindly stop spamming or severe punishments will happen!', // Message that will be sent in chat upon warning a user.
+		muteMessage: '**{user_tag}** has been muted for spamming uncontrollably.',// Message that will be sent in chat upon muting a user.
+		maxDuplicatesWarning: 3, // Amount of duplicate messages that trigger a warning.
 		maxDuplicatesKick: 1000, // Amount of duplicate messages that trigger a warning.
 		maxDuplicatesBan: 1200, // Amount of duplicate messages that trigger a warning.
-		maxDuplicatesMute: 8, // Ammount of duplicate message that trigger a mute.
+		maxDuplicatesMute: 6, // Ammount of duplicate message that trigger a mute.
 		ignoredPermissions: [ 'ADMINISTRATOR'], // Bypass users with any of these permissions.
 		ignoreBots: true, // Ignore bot messages.
 		verbose: true, // Extended Logs from module.
 		ignoredMembers: [], // Array of User IDs that get ignored.
-		muteRoleName: "Muted", // Name of the role that will be given to muted users!
+		muteRoleName: "Lockdown", // Name of the role that will be given to muted users!
 		removeMessages: false
 });
 
