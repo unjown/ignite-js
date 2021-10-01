@@ -50,8 +50,9 @@
 			let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`;
 			message.channel.send({content: uptime})
 
-		}else if(message.content.toLowerCase().startsWith("ignt ip"))
+		}else if(message.content.toLowerCase().startsWith("ignt ip")){
 			message.channel.send({content: "**--IGNITE OFFICIAL MINECRAFT SERVER--**\nIP: us-01.infernalnodes.com:25642"})
+		}
 	});
 
 	const job = new CronJob('00 55 8 * * 0', function() {
