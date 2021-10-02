@@ -1,6 +1,8 @@
-	const { Client } = require('discord.js');
-	const client = new Client({ intents: ['GUILDS', 'GUILD_MESSAGES'] });
+	const { Client, Intents } = require('discord.js');
+	const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES] });
 	const config = require('./config.json');
+	const zoom =  require('./zoom.json')
+	const link = (zoom.zoomL)
 	var CronJob = require('cron').CronJob;
 	const AntiSpam = require('discord-anti-spam');
 	const antiSpam = new AntiSpam({
@@ -55,9 +57,13 @@
 		}
 	});
 
+
+	client.on("guildMemberAdd", (member) => {
+		console.log(member);
+	});
 	const job = new CronJob('00 55 8 * * 0', function() {
 		const d = new Date();
-		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE SUNDAYS WILL BE OFFICIALLY STARTING IN 5 MINS"})
+		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE SUNDAYS WILL BE OFFICIALLY STARTING IN 5 MINS\nZOOM LINK:" + link})
 	},
 	null,
 	true,
@@ -66,7 +72,7 @@
 
 	const job2 = new CronJob('00 30 8 * * 0', function() {
 		const d = new Date();
-		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE SUNDAYS WILL BE OFFICIALLY STARTING IN 30 MINS"})
+		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE SUNDAYS WILL BE OFFICIALLY STARTING IN 30 MINS\nZOOM LINK:" + link})
 	},
 	null,
 	true,
@@ -75,7 +81,7 @@
 
 	const job3 = new CronJob('00 30 19 * * 5', function() {
 		const d = new Date();
-		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: FRIDAYS SUNDAYS WILL BE OFFICIALLY STARTING IN 30 MINS"})
+		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: FRIDAYS SUNDAYS WILL BE OFFICIALLY STARTING IN 30 MINS\nZOOM LINK:" + link})
 	},
 	null,
 	true,
@@ -84,7 +90,7 @@
 
 	const job4 = new CronJob('00 55 19 * * 5', function() {
 		const d = new Date();
-		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE FRIDAYS WILL BE OFFICIALLY STARTING IN 5 MINS"})
+		client.channels.cache.get('876363970108334162').send({content: "@everyone REMINDER: IGNITE FRIDAYS WILL BE OFFICIALLY STARTING IN 5 MINS\nZOOM LINK:" + link})
 	},
 	null,
 	true,
