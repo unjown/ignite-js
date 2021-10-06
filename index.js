@@ -25,15 +25,19 @@
 		removeMessages: false
 });
 
-	var bad = ['fuck' , 'bitch' , 'fck' , 'btch' , 'vagina' , 'cock' , 'dick', 'shit' ,  'sht' , 'gago' , 'shet' , 'tangina' , 'putangina' , 'sh1t' , 'pakshet', 'pakyu']
+	var bad = ['fuck' , 'bitch' , 'fck' , 'btch' , 'vagina', 'dick', 'shit' ,  'sht' , 'gago' , 'shet' , 'tangina' , 'putangina' , 'sh1t' , 'pakshet', 'pakyu']
 
 
 	client.on('messageCreate', message => antiSpam.message(message)); 
 	client.on("messageCreate", message => { 
 		if(bad.some(word => message.content.toLowerCase().includes(word))){
-			message.delete()
-			const auhor = message.author.id
-			message.channel.send({content: '<@' + auhor + '> ' + 'swearing is not allowed here :)'})
+			const splitMessage = message.content.split(" ");
+			if(splitMessage.some(word => message.content.toLowerCase().includes(word))){
+				message.delete()
+				const auhor = message.author.id
+				message.channel.send({content: '<@' + auhor + '> ' + 'swearing is not allowed here :)'})
+			}
+
 
 		}else if(message.content.includes('https://shellshock.io/')){
 			message.channel.send({content: "<@&885496383900102667> SHELL SHOCKERS LINK HAS BEEN SENT"})
