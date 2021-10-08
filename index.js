@@ -4,6 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 //packages and json stuff
 const config = require('./config.json');
 const akinator = require("discord.js-akinator");
+const { Connect4, RockPaperScissors, TicTacToe } = require('discord-gamecord')
 const zoom =  require('./zoom.json')
 const link = (zoom.zoomL)
 var CronJob = require('cron').CronJob;
@@ -28,10 +29,13 @@ const antiSpam = new AntiSpam({
 	removeMessages: false
 });
 
+
+
+
 var bad = ['fuck' , 'bitch' , 'fck' , 'btch' , 'vagina', 'dick', 'shit' ,  'sht' , 'gago' , 'shet' , 'tangina' , 'putangina' , 'sh1t' , 'pakshet', 'pakyu']
 
 client.on('messageCreate', message => antiSpam.message(message)); 
-client.on("messageCreate", message => { 
+client.on("messageCreate", async message => { 
 	if(bad.some(word => message.content.toLowerCase().includes(word))){
 		const splitMessage = message.content.split(" ");
 		if(splitMessage.some(word => message.content.toLowerCase().includes(word))){
@@ -72,6 +76,97 @@ client.on("messageCreate", message => {
 			gameType: gameType, //Defaults to "character"
 			useButtons: useButtons //Defaults to "false"
 		});
+	}else if(message.content.toLowerCase().startsWith("ignt c4")){
+		if (!message.mentions.users.first()){
+			message.channel.send({content: "Please specify a player to play with e.g.`ignt c4 @unjown`"})
+			return
+		}
+		
+		new Connect4({
+			message: message,
+			slash_command: false,
+			opponent: message.mentions.users.first(),
+			embed: {
+			  title: 'Connect 4',
+			  color: '#5865F2',
+			},
+			emojis: {
+			  player1: '🔵',
+			  player2: '🟡'
+			},
+			waitMessage: 'Waiting for the opponent...',
+			turnMessage: '{emoji} | Its turn of player **{player}**.',
+			winMessage: '{emoji} | **{winner}** won the game!',
+			gameEndMessage: 'The game went unfinished :(',
+			drawMessage: 'It was a draw!',
+			othersMessage: 'You are not allowed to use buttons for this message!',
+			askMessage: 'Hey {opponent}, {challenger} challenged you for a game of Connect 4!',
+			cancelMessage: 'Looks like they refused to have a game of Connect4. \:(',
+			timeEndMessage: 'Since the opponent didnt answer, i dropped the game!',
+		  }).startGame()
+	}else if(message.content.toLowerCase().startsWith("ignt rps")){
+		if (!message.mentions.users.first()){
+			message.channel.send({content: "Please specify a player to play with e.g.`ignt c4 @unjown`"})
+			return
+		}
+		new RockPaperScissors({
+			message: message,
+			slash_command: false,
+			opponent: message.mentions.users.first(),
+			embed: {
+			  title: 'Rock Paper Scissors',
+			  description: 'Press a button below to make a choice!',
+			  color: '#5865F2',
+			},
+			buttons: {
+			  rock: 'Rock',
+			  paper: 'Paper',
+			  scissors: 'Scissors',
+			},
+			emojis: {
+			  rock: '🌑',
+			  paper: '📃',
+			  scissors: '✂️',
+			},
+			othersMessage: 'You are not allowed to use buttons for this message!',
+			chooseMessage: 'You choose {emoji}!',
+			noChangeMessage: 'You cannot change your selection!',
+			askMessage: 'Hey {opponent}, {challenger} challenged you for a game of Rock Paper Scissors!',
+			cancelMessage: 'Looks like they refused to have a game of Rock Paper Scissors. \:(',
+			timeEndMessage: 'Since the opponent didnt answer, i dropped the game!',
+			drawMessage: 'It was a draw!',
+			winMessage: '{winner} won the game!',
+			gameEndMessage: 'The game went unfinished :(',
+		  }).startGame();
+	}else if(message.content.toLowerCase().startsWith("ignt ttt")){
+		if (!message.mentions.users.first()){
+			message.channel.send({content: "Please specify a player to play with e.g.`ignt c4 @unjown`"})
+			return
+		}
+		new TicTacToe({
+			message: message,
+			slash_command: false,
+			opponent: message.mentions.users.first(),
+			embed: {
+			  title: 'Tic Tac Toe',
+			  overTitle: 'Game Over',
+			  color: '#5865F2',
+			},
+			oEmoji: '🔵',
+			xEmoji: '❌',
+			blankEmoji: '➖',
+			oColor: 'PRIMARY',
+			xColor: 'DANGER',
+			waitMessage: 'Waiting for the opponent...',
+			turnMessage: '{emoji} | Its now **{player}** turn!',
+			askMessage: 'Hey {opponent}, {challenger} challenged you for a game of Tic Tac Toe!',
+			cancelMessage: 'Looks like they refused to have a game of Tic Tac Toe. \:(',
+			timeEndMessage: 'Since the opponent didnt answer, i dropped the game!',
+			drawMessage: 'It was a draw!',
+			winMessage: '{emoji} | **{winner}** won the game!',
+			gameEndMessage: 'The game went unfinished :(',
+		  }).startGame();
+		  
 	}
 });
 
